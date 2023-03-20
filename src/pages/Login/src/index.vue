@@ -2,7 +2,7 @@
   <div class="loginbg">
     <div class="login_card">
       <div class="login_card_title">Have an account?</div>
-      <el-form ref="formRef" :model="numberValidateForm" label-width="0">
+      <el-form ref="ruleFormRef" :model="numberValidateForm" label-width="0">
         <el-form-item
           label=""
           prop="Username"
@@ -33,7 +33,7 @@
           <el-button
             type="primary"
             class="login_card_SIGNIN"
-            @click="submitForm(formRef)"
+            @click="submitForm(ruleFormRef)"
             >SIGN IN</el-button
           >
         </el-form-item>
@@ -61,12 +61,41 @@
 </template>
 
 <script setup>
-import { reactive } from 'vue';
+import { reactive, ref } from 'vue';
+import { JSEncrypt } from 'jsencrypt';
+import { doLogin, getPublicKey } from '@/api/';
+import { useUserStore } from '@/store/user';
+
 let numberValidateForm = reactive({
   Username: '',
   checked: false,
   Password: '',
 });
+let ruleFormRef = ref();
+
+/**@function 密码加密 */
+const setEncrypt = (publicKey, str) => {
+  const jsencrypt = new JSEncrypt();
+  jsencrypt.setPublicKey(publicKey);
+  return jsencrypt.encrypt(str);
+};
+
+const submitForm = (ruleFormRef) => {
+  ruleFormRef.validate(async (val) => {
+    if (val) {
+      const publicKey = await getPublicKey();
+      let { code, data } = await doLogin({
+        userName: numberValidateForm.Username,
+        passWord: setEncrypt(publicKey, numberValidateForm.Password),
+      });
+      if (code === 200) {
+        let { setUserinfo, getUserinfo } = useUserStore();
+        setUserinfo(data);
+        console.log(getUserinfo());
+      }
+    }
+  });
+};
 </script>
 
 <style lang="scss" scoped>
@@ -94,7 +123,8 @@ let numberValidateForm = reactive({
     z-index: -1;
   }
   .login_card {
-    width: 350px;
+    max-width: 350px;
+    height: 25%;
     .login_card_title {
       font-size: 28px;
       font-weight: 300;
@@ -201,6 +231,7 @@ let numberValidateForm = reactive({
   .button_list {
     display: flex;
     margin-top: 15px;
+    justify-content: space-between;
     .button_list_item {
       width: 170px;
       height: 47px;
