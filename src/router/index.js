@@ -6,8 +6,9 @@ export default [
   },
   {
     path: '/Home',
+    redirect: '/',
     component: () => import('@/pages/Home'),
-    name: '首页',
+    name: '首 页',
   },
   {
     path: '/login',

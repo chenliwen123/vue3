@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.1.0",
+    "echarts": "^5.4.2",
     "element-plus": "^2.2.36",
     "jsencrypt": "^3.3.2",
     "nprogress": "^0.2.0",
