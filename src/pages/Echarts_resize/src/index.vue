@@ -132,13 +132,13 @@ const vResizeOb = directive.ResizeOb;
 </script>
 
 <template>
-  <div class="Home">
+  <div class="Echarts_resize">
     <div id="echarts" v-resize-ob="binding"></div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-.Home {
+.Echarts_resize {
   color: #000;
   width: 100%;
   height: 100%;

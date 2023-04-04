@@ -15,4 +15,9 @@ export default [
     component: () => import('@/pages/Login'),
     name: '登录',
   },
+  {
+    path: '/Echarts_resize',
+    component: () => import('@/pages/Echarts_resize'),
+    name: 'echarts图表大小自由变换',
+  },
 ];
