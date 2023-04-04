@@ -1,12 +1,12 @@
 <template>
   <div>
     {{ searchData }}
-    <Children :model-value="searchData" @update:model-value="update"></Children>
+    <Children v-model="searchData"></Children>
   </div>
 </template>
 
 <script setup>
-import { reactive, ref, watchEffect } from 'vue';
+import { ref } from 'vue';
 import Children from './Children.vue';
 let searchData = ref({
   keyword: '',
@@ -17,9 +17,6 @@ let searchData = ref({
     { label: '深圳', value: '3' },
   ],
 });
-const update = (value) => {
-  searchData.value = value;
-};
 </script>
 
 <style lang="scss" scoped></style>
