@@ -9,6 +9,7 @@ const pathResolve = (dir) => resolve(__dirname, dir);
 export default defineConfig((e) => {
   return {
     plugins: [vue()],
+    base:'./',
     resolve: {
       alias: {
         '@': pathResolve('./src'),
