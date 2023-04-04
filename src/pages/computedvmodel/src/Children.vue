@@ -42,15 +42,16 @@ const emit = defineEmits(['update:modelValue']);
 let model = computed({
   set(value) {},
   get() {
-    return new Proxy(props.modelValue, {
-      set(obj, name, value) {
-        emit('update:modelValue', {
-          ...obj,
-          [name]: value,
-        });
-        return true;
-      },
-    });
+    return props.modelValue; // 这里这样写 也实现了袁老师的效果， 下面注释的是袁老师的源码
+    // return new Proxy(props.modelValue, {
+    //   set(obj, name, value) {
+    //     emit('update:modelValue', {
+    //       ...obj,
+    //       [name]: value,
+    //     });
+    //     return true;
+    //   },
+    // });
   },
 });
 </script>
