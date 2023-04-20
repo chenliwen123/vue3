@@ -6,3 +6,7 @@ export const serialize = (data) => {
   });
   return list.join('&');
 };
+
+/**@function 滚动文字 */
+
+export const rollText = (text) => {};

@@ -1,8 +1,9 @@
 <script setup lang="ts">
+import Layout from './pages/Layout/index';
 </script>
 
 <template>
-  <router-view></router-view>
+  <Layout></Layout>
 </template>
 
 <style scoped>

@@ -1,28 +1,38 @@
 export default [
   {
     path: '/',
-    component: () => import('@/pages/Home'),
-    name: '首页',
+    component: () => import('@/pages/Layout'),
+    name: '/',
+    redirect: '/Home',
   },
   {
     path: '/Home',
-    redirect: '/',
     component: () => import('@/pages/Home'),
-    name: '首 页',
+    name: 'home',
+    meta: { title: '首页', icon: 'Document' },
   },
   {
     path: '/login',
     component: () => import('@/pages/Login'),
-    name: '登录',
+    name: 'login',
+    meta: { title: '登陆页面', icon: 'ChatRound' },
   },
   {
     path: '/Echarts_resize',
     component: () => import('@/pages/Echarts_resize'),
-    name: 'echarts图表大小自由变换',
+    name: 'echartsresize',
+    meta: { title: '监听dom元素大小变化', icon: 'Headset' },
   },
   {
     path: '/computedvmodel',
     component: () => import('@/pages/computedvmodel'),
-    name: 'computed和v-model使用',
+    name: 'computedvmodel',
+    meta: { title: '双向数据绑定', icon: 'Switch' },
+  },
+  {
+    path: '/audio',
+    component: () => import('@/pages/audio'),
+    name: 'audio',
+    meta: { title: '音频可视化', icon: 'Headset' },
   },
 ];
